@@ -2,6 +2,57 @@
 
 <h3>Experiences</h3>
 
+<hr />
+
+@foreach (var xp in experiences)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <h3>@xp.Position</h3>
+            <h4>@xp.Company</h4>
+            <p>@xp.Description</p>
+            <p class="row">
+                @foreach (var project in xp.Projects)
+                {
+                    <h4><span style="margin: 2px" class="badge badge-primary">@project.ToUpper()</span></h4>
+                }
+            </p>
+            <p class="row">
+                @foreach (var languagesTools in xp.LanguagesTools)
+                {
+                    <h4><span style="margin: 2px" class="badge badge-warning">@languagesTools.ToUpper()</span></h4>
+                }
+            </p>
+        </div>
+        <div class="col-md-4 float-right"><h4>@xp.StartDate.ToString("dd/MM/yyyy") - @(xp.EndDate == null ? "Present" : ((DateTime)xp.EndDate).ToString("dd/MM/yyyy"))</h4></div>
+    </div>
+    <hr />
+}
+
+
 @code {
 
+    private List<Experience> experiences = new List<Experience>()
+{
+        new Experience{ Position = "IT Analyst", Company = "Itaú Unibanco", StartDate = new DateTime(2020,12,1), EndDate = null,
+            Description = "Member of the Compensation and Shipping team, working on innovation solutions with a focus on process automation", Projects = new List<string>{ ".Net Core", "AngularJS", "Angular", "SQL Server", "Scrum" },
+            LanguagesTools = new List<string>{ }},
+        new Experience{ Position = "DevOps Analyst Jr", Company = "Group FCamara", StartDate = new DateTime(2020,9,1), EndDate = new DateTime(2020,11,25),
+            Description = "Supporting the development team in the construction of distributed systems in Cloud Providers, following the principles and practices of the DevOps culture, creating processes that use IAC practices and processes at the level of architecture that standardize and raise the level of resilience, architecture, security and quality of applications.", Projects = new List<string>{ ".Net Core", "Azure DevOps", "Terraform", "AWS", "Scrum" },
+            LanguagesTools = new List<string>{ }},
+        new Experience{ Position = "IT Analyst Jr", Company = "Museum of Art of São Paulo - MASP", StartDate = new DateTime(2017,10,16), EndDate = new DateTime(2020,6,01),
+            Description = "Administration of Servers in General, Web Servers, network support through specific systems, planning, development, automation and administration tools in the cloud, knowledge of code versioning procedures and software, security and quality.", Projects = new List<string>{ "Azure", "Linux", "Apache", "Zabbix", "SQL Server", "Git", "GitHub", "ERP Protheus" },
+            LanguagesTools = new List<string>{ }},
+    };
+
+    public class Experience
+    {
+        public string Position { get; set; }
+        public string Company { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string Description { get; set; }
+        public List<string> Projects { get; set; }
+        public List<string> LanguagesTools { get; set; }
+    }
 }
