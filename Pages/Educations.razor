@@ -2,6 +2,36 @@
 
 <h3>Educations</h3>
 
+<hr />
+
+@foreach (var xp in educations)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <h3>@xp.University</h3>
+            <h4>@xp.Course</h4>
+            <p>@xp.Certification</p>
+        </div>
+        <div class="col-md-4 float-right"><h4>@xp.StartDate.ToString("dd/MM/yyyy")  @(xp.EndDate == null ? "" : "- " + ((DateTime)xp.EndDate).ToString("dd/MM/yyyy"))</h4></div>
+    </div>
+    <hr />
+}
+
 @code {
 
+    private List<Education> educations = new List<Education>
+    {
+        new Education{ University = "UNIVERSIDADE PAULISTA - UNIP", Course = "BACHELOR OF INFORMATION SYSTEMS",
+            Certification = "BACHELOR OF INFORMATION SYSTEMS", StartDate = new DateTime(2018,07,01), EndDate = null }
+    };
+
+
+    public class Education
+    {
+        public string University { get; set; }
+        public string Course { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string Certification { get; set; }
+    }
 }
