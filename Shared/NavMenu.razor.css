@@ -1,5 +1,10 @@
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
+    /*background-color: rgba(red, red, red, 0.1);*/
+}
+
+#photoProfile {
+    border-radius: 50%;
 }
 
 .top-row {
